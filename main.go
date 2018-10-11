@@ -31,7 +31,6 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		ip := "0.0.0.0"
 
-		log.Print("%v", c.Request.Header)
 		if c.Request.Header.Get("X-Real-IP") != "" {
 			ip = c.Request.Header.Get("X-Real-IP")
 
