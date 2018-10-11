@@ -8,6 +8,7 @@ import (
 )
 
 type ipresponse struct {
+	Address     string  `json:"address"`
 	CountryCode string  `json:"country_code"`
 	CountryName string  `json:"country_name"`
 	Subdivision string  `json:"subdivision"`
@@ -28,10 +29,19 @@ func main() {
 
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
-		ip, _, err := net.SplitHostPort(c.Request.RemoteAddr)
-		if err != nil {
-			log.Printf("debug: Getting req.RemoteAddr %v", err)
-			c.JSON(500, gin.H{"error": "could not determine ip address"})
+		ip := "0.0.0.0"
+
+		log.Print("%v", c.Request.Header)
+		if c.Request.Header.Get("X-Real-IP") != "" {
+			ip = c.Request.Header.Get("X-Real-IP")
+
+		} else {
+			ip, _, err = net.SplitHostPort(c.Request.RemoteAddr)
+
+			if err != nil {
+				log.Printf("debug: Getting req.RemoteAddr %v", err)
+				c.JSON(500, gin.H{"error": "could not determine ip address"})
+			}
 		}
 
 		ipobj := net.ParseIP(ip)
@@ -43,6 +53,7 @@ func main() {
 		}
 
 		response := ipresponse{
+			ip,
 			record.Country.IsoCode,
 			"Unknown",
 			"Unknown",
