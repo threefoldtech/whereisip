@@ -30,7 +30,7 @@ Server listen on `:8085`.
 Example response:
 ```json
 {
-  "address": "82.212.171.24.",
+  "address": "82.212.171.24",
   "country_code": "BE",
   "country_name": "Belgium",
   "subdivision": "Wallonia",
