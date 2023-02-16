@@ -26,3 +26,18 @@ There is no command line arguments supported for now.
 
 Only one GET request to `/` is supported and you'll get a JSON response of GeoLite database content based on your remote address.
 Server listen on `:8085`.
+
+Example response:
+```json
+{
+  "address": "82.212.171.24.",
+  "country_code": "BE",
+  "country_name": "Belgium",
+  "subdivision": "Wallonia",
+  "continent": "Europe",
+  "city_name": "Liège",
+  "latitude": 50.6337,
+  "longitude": 5.5675,
+  "source": "maxmind geolite2"
+}
+```
