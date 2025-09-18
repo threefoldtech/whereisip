@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/oschwald/geoip2-golang"
 	"log"
 	"net"
+
+	"github.com/gin-gonic/gin"
+	"github.com/oschwald/geoip2-golang"
 )
 
 type ipresponse struct {
@@ -28,6 +29,11 @@ func main() {
 	gin.SetMode(gin.ReleaseMode)
 
 	r := gin.Default()
+	err = r.SetTrustedProxies(nil) // nil trusts all proxies
+	if err != nil {
+		log.Fatalf("Failed to set trusted proxies: %v", err)
+	}
+
 	r.GET("/", func(c *gin.Context) {
 		ip := "0.0.0.0"
 
