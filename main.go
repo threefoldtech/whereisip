@@ -89,5 +89,5 @@ func main() {
 	})
 
 	log.Print("Starting web server")
-	r.Run(":8085")
+	r.Run(":80")
 }
