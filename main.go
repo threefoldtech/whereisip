@@ -35,17 +35,18 @@ func main() {
 	}
 
 	r.GET("/", func(c *gin.Context) {
-		ip := "0.0.0.0"
+		ip := c.Query("ip")
+		if ip == "" {
+			if c.Request.Header.Get("X-Real-IP") != "" {
+				ip = c.Request.Header.Get("X-Real-IP")
 
-		if c.Request.Header.Get("X-Real-IP") != "" {
-			ip = c.Request.Header.Get("X-Real-IP")
+			} else {
+				ip, _, err = net.SplitHostPort(c.Request.RemoteAddr)
 
-		} else {
-			ip, _, err = net.SplitHostPort(c.Request.RemoteAddr)
-
-			if err != nil {
-				log.Printf("debug: Getting req.RemoteAddr %v", err)
-				c.JSON(500, gin.H{"error": "could not determine ip address"})
+				if err != nil {
+					log.Printf("debug: Getting req.RemoteAddr %v", err)
+					c.JSON(500, gin.H{"error": "could not determine ip address"})
+				}
 			}
 		}
 
