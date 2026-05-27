@@ -1,10 +1,10 @@
-# WhereIsIP
+# Grid GeoIP
 
-WhereIsIP is a lightweight Go webservice that provides IP geolocation and lookup. It uses the MaxMind GeoLite2 database to determine geographical location and metadata associated with IP addresses.
+Grid GeoIP is a lightweight Go webservice that provides IP geolocation and lookup. It uses the MaxMind GeoLite2 database to determine geographical location and metadata associated with IP addresses.
 
 ## What this is
 
-WhereIsIP is a small HTTP service that answers geolocation queries for IP addresses. It supports both explicit IP queries via request parameters and implicit lookups based on the remote address of the incoming request. The service supports both IPv4 and IPv6 addresses and returns structured JSON containing country, city, continent, subdivision, and coordinate data.
+Grid GeoIP is a small HTTP service that answers geolocation queries for IP addresses. It supports both explicit IP queries via request parameters and implicit lookups based on the remote address of the incoming request. The service supports both IPv4 and IPv6 addresses and returns structured JSON containing country, city, continent, subdivision, and coordinate data.
 
 ## What this repository contains
 
@@ -14,7 +14,7 @@ WhereIsIP is a small HTTP service that answers geolocation queries for IP addres
 
 ## Role in the stack
 
-WhereIsIP functions as a network diagnostics and geolocation utility. It can be deployed as a standalone microservice or integrated into larger systems that need to determine the geographical origin of traffic. It is commonly used for node geography mapping, traffic analysis, and regional service routing.
+Grid GeoIP functions as a network diagnostics and geolocation utility. It can be deployed as a standalone microservice or integrated into larger systems that need to determine the geographical origin of traffic. It is commonly used for node geography mapping, traffic analysis, and regional service routing.
 
 ## Relation to ThreeFold
 
